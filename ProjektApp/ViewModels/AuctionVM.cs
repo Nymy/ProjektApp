@@ -10,6 +10,8 @@ namespace ProjektApp.ViewModels
 
         public DateTime CloseAuction { get; set; }
 
+        public string Description { get; set; }
+
         public bool IsCompleted{ get; set; }
 
         public static AuctionVM FromAuction(Auction auction)
@@ -20,6 +22,7 @@ namespace ProjektApp.ViewModels
                 Title = auction.Title,
                 CreatedDate = auction.CreatedDate,
                 CloseAuction = auction.CloseAuction,
+                Description = auction.Description,
                 IsCompleted = auction.IsCompleted()
             };
         }

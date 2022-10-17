@@ -14,6 +14,7 @@ namespace ProjektApp.Core
             a1.AddBid(new Core.Bid("Viktor", 130));
             a2.AddBid(new Core.Bid("Kasper", 100));
             a3.AddBid(new Core.Bid("Calle", 100));
+            a3.Description = "This cat is very cute";
             List<Auction> auctions = new();
             auctions.Add(a1);
             auctions.Add(a2);

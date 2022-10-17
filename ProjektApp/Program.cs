@@ -1,11 +1,14 @@
+using Microsoft.EntityFrameworkCore;
 using ProjektApp.Core;
 using ProjektApp.Core.Interfaces;
+using ProjektApp.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IAuctionService, MockAuctionService>();
+builder.Services.AddDbContext<AuctionDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("AuctionDBConnection")));
 
 var app = builder.Build();
 
