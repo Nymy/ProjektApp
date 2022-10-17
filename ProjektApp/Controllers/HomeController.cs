@@ -14,7 +14,7 @@ namespace ProjektApp.Controllers
         }
 
         public IActionResult Index()
-        {
+        {   
             return View();
         }
 
