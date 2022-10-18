@@ -23,7 +23,7 @@ namespace ProjektApp.ViewModels
                 Id = auction.Id,
                 Title = auction.Title,
                 CreatedDate = auction.CreatedDate,
-                CloseAuction = auction.CloseAuction,
+                CloseAuction = auction.CloseDate,
                 Description = auction.Description,
                 IsCompleted = auction.IsCompleted()
             };

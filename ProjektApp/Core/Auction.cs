@@ -1,6 +1,4 @@
-﻿using ProjektApp.Persistence;
-
-namespace ProjektApp.Core
+﻿namespace ProjektApp.Core
 {
     public class Auction
     {
@@ -9,7 +7,7 @@ namespace ProjektApp.Core
 
         public DateTime CreatedDate { get; }
 
-        public DateTime CloseAuction { get; set; }  
+        public DateTime CloseDate { get; set; }  
 
         public string Description { get; set; }
 
@@ -29,7 +27,7 @@ namespace ProjektApp.Core
             Title = title;
             Description = description;
             CreatedDate = DateTime.Now;
-            CloseAuction = closeAuction;
+            CloseDate = closeAuction;
           
         }
 
@@ -37,6 +35,7 @@ namespace ProjektApp.Core
 
         public void AddBid(Bid newBid)
         {
+            Console.WriteLine(newBid.BidAmount + " NEW BID SENT IN");
             if (IsCompleted()) throw new InvalidOperationException("Auction is closed!");
  
             if (_bids.Count == 0 || newBid.BidAmount.CompareTo(_bids.Last().BidAmount) > 0 )
@@ -44,9 +43,15 @@ namespace ProjektApp.Core
             else throw new ArgumentException("Bid not high enough");
         }
 
+        public void AddBidFromDb(Bid newBid)
+        {
+            _bids.Add(newBid);
+        }
+
+
         public bool IsCompleted()
         {
-            if (DateTime.Compare(DateTime.Now, CloseAuction) < 0) return false;
+            if (DateTime.Compare(DateTime.Now, CloseDate) < 0) return false;
             return true;
         }
 
