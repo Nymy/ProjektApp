@@ -1,4 +1,6 @@
-﻿namespace ProjektApp.Core
+﻿using ProjektApp.Persistence;
+
+namespace ProjektApp.Core
 {
     public class Auction
     {
@@ -13,7 +15,7 @@
 
         private List<Bid> _bids = new List<Bid>();
 
-        //public IEnumerable<Bid> Bids => _bids;
+        public IEnumerable<Bid> Bids => _bids;
 
         public Auction(string title)
         {
@@ -21,12 +23,14 @@
             CreatedDate = DateTime.Now;
         }
 
-        public Auction(int id, string title, DateTime closeAuction)
+        public Auction(int id, string title, string description, DateTime closeAuction)
         {
             Id = id;
             Title = title;
+            Description = description;
             CreatedDate = DateTime.Now;
             CloseAuction = closeAuction;
+          
         }
 
         public Auction() { }

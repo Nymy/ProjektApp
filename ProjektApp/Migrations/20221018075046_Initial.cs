@@ -49,7 +49,7 @@ namespace ProjektApp.Migrations
             migrationBuilder.InsertData(
                 table: "AuctionDbs",
                 columns: new[] { "Id", "CloseDate", "CreatedDate", "Descripction", "Title" },
-                values: new object[] { -1, new DateTime(2022, 10, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 10, 17, 15, 32, 37, 742, DateTimeKind.Local).AddTicks(1170), "Alot of orchids, very nice", "Auction for orchids" });
+                values: new object[] { -1, new DateTime(2022, 10, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 10, 18, 9, 50, 46, 223, DateTimeKind.Local).AddTicks(7816), "Alot of orchids, very nice", "Auction for orchids" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_BidsDbs_AuctionId",

@@ -13,5 +13,14 @@
             BidAmount = bidAmount;  
             _biddedAt = DateTime.Now;
         }
+
+
+        public Bid(int id, string name, int bidAmount)
+        {
+            Id = id;
+            Name = name;
+            BidAmount = bidAmount;
+            _biddedAt = DateTime.Now;
+        }
     }
 }

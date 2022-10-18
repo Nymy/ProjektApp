@@ -2,7 +2,7 @@
 
 namespace ProjektApp.Persistence
 {
-    public class AuctionDB
+    public class AuctionDb
     {
         [Key]
         public int Id { get; set; }
@@ -24,7 +24,7 @@ namespace ProjektApp.Persistence
         [DataType(DataType.DateTime)]
         public DateTime CloseDate { get; set; }
 
-        public IEnumerable<BidDB> BidDbs { get; set; } = new List<BidDB>();
+        public List<BidDb> BidDbs { get; set; } = new List<BidDb>();
 
     }
 }

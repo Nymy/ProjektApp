@@ -11,9 +11,9 @@ using ProjektApp.Persistence;
 
 namespace ProjektApp.Migrations
 {
-    [DbContext(typeof(AuctionDBContext))]
-    [Migration("20221017133237_Initial")]
-    partial class Initial
+    [DbContext(typeof(AuctionDbContext))]
+    [Migration("20221018090412_BidDbs_added")]
+    partial class BidDbs_added
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,7 +24,7 @@ namespace ProjektApp.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("ProjektApp.Persistence.AuctionDB", b =>
+            modelBuilder.Entity("ProjektApp.Persistence.AuctionDb", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -57,13 +57,13 @@ namespace ProjektApp.Migrations
                         {
                             Id = -1,
                             CloseDate = new DateTime(2022, 10, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedDate = new DateTime(2022, 10, 17, 15, 32, 37, 742, DateTimeKind.Local).AddTicks(1170),
+                            CreatedDate = new DateTime(2022, 10, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Descripction = "Alot of orchids, very nice",
                             Title = "Auction for orchids"
                         });
                 });
 
-            modelBuilder.Entity("ProjektApp.Persistence.BidDB", b =>
+            modelBuilder.Entity("ProjektApp.Persistence.BidDb", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -77,6 +77,9 @@ namespace ProjektApp.Migrations
                     b.Property<int>("BidAmount")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("BiddedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -87,20 +90,38 @@ namespace ProjektApp.Migrations
                     b.HasIndex("AuctionId");
 
                     b.ToTable("BidsDbs");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = -1,
+                            AuctionId = -1,
+                            BidAmount = 100,
+                            BiddedAt = new DateTime(2022, 10, 17, 13, 20, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Viktor"
+                        },
+                        new
+                        {
+                            Id = -2,
+                            AuctionId = -1,
+                            BidAmount = 101,
+                            BiddedAt = new DateTime(2022, 10, 17, 13, 21, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Nonno"
+                        });
                 });
 
-            modelBuilder.Entity("ProjektApp.Persistence.BidDB", b =>
+            modelBuilder.Entity("ProjektApp.Persistence.BidDb", b =>
                 {
-                    b.HasOne("ProjektApp.Persistence.AuctionDB", "auctionDB")
+                    b.HasOne("ProjektApp.Persistence.AuctionDb", "auctionDb")
                         .WithMany("BidDbs")
                         .HasForeignKey("AuctionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("auctionDB");
+                    b.Navigation("auctionDb");
                 });
 
-            modelBuilder.Entity("ProjektApp.Persistence.AuctionDB", b =>
+            modelBuilder.Entity("ProjektApp.Persistence.AuctionDb", b =>
                 {
                     b.Navigation("BidDbs");
                 });

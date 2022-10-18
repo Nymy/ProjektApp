@@ -7,8 +7,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddScoped<IAuctionService, MockAuctionService>();
-builder.Services.AddDbContext<AuctionDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("AuctionDBConnection")));
+builder.Services.AddScoped<IAuctionPersistence, AuctionSqlPersistence>();   
+builder.Services.AddScoped<IAuctionService, AuctionService>();
+
+// db, with dependency injection
+builder.Services.AddDbContext<AuctionDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("AuctionDbConnection")));
+
+// add auto mapper scanning (requires AutoMapper package)
+builder.Services.AddAutoMapper(typeof(Program));
 
 var app = builder.Build();
 

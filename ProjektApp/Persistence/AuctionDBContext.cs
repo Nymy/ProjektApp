@@ -1,26 +1,50 @@
 ﻿using Microsoft.EntityFrameworkCore;
 namespace ProjektApp.Persistence
 {
-    public class AuctionDBContext : DbContext
+    public class AuctionDbContext : DbContext
     {
-        public AuctionDBContext(DbContextOptions<AuctionDBContext> options) : base(options) { }
+        public AuctionDbContext(DbContextOptions<AuctionDbContext> options) : base(options) { }
 
-        public DbSet<BidDB> BidsDbs { get; set; }
-        public DbSet<AuctionDB> AuctionDbs { get; set; }
+        public DbSet<BidDb> BidsDbs { get; set; }
+        public DbSet<AuctionDb> AuctionDbs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<AuctionDB>().HasData(
+            AuctionDb adb = new AuctionDb
+            {
+                Id = -1, // from seed data
+                Title = "Auction for orchids",
+                Descripction = "Alot of orchids, very nice",
+                CreatedDate = new DateTime(2022,10,17),
+                CloseDate = new DateTime(2022, 10, 30),
+                BidDbs = new List<BidDb>() 
+            };
+
+            BidDb bid1 = new BidDb()
+            {
+                Id = -1,
+                Name = "Viktor",
+                BidAmount = 100,
+                BiddedAt = new DateTime(2022, 10, 17, 13, 20, 00),
+                AuctionId = -1
+
+            };
+            BidDb bid2 = new BidDb()
+            {
+                Id = -2,
+                Name = "Nonno",
+                BidAmount = 101,
+                BiddedAt = new DateTime(2022, 10, 17, 13, 21, 00),
+                AuctionId = -1
+
+            };
+
+            modelBuilder.Entity<AuctionDb>().HasData(adb);
+            modelBuilder.Entity<BidDb>().HasData(bid1);
+            modelBuilder.Entity<BidDb>().HasData(bid2);
 
 
-                new AuctionDB
-                {
-                    Id = -1, // from seed data
-                    Title = "Auction for orchids",
-                    Descripction = "Alot of orchids, very nice",
-                    CreatedDate = DateTime.Now,
-                    CloseDate = new DateTime(2022, 10, 30)
-                });
+
         }
 
     }

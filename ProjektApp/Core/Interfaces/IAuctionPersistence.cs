@@ -1,6 +1,6 @@
 ﻿namespace ProjektApp.Core.Interfaces
 {
-    public interface IAuctionService
+    public interface IAuctionPersistence
     {
         List<Auction> GetAuctions();
 

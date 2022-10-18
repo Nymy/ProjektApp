@@ -27,13 +27,16 @@ namespace ProjektApp.Controllers
             return View(auctionVMs);
         }
 
-        /*
+        
         // GET: AuctionController1/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            Auction auction = _auctionService.GetById(id);
+            AuctionDetailsVM detailsVM = AuctionDetailsVM.FromAuction(auction);
+            return View(detailsVM);
         }
 
+        /*
         // GET: AuctionController1/Create
         public ActionResult Create()
         {

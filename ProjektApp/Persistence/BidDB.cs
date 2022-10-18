@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProjektApp.Persistence
 {
-    public class BidDB
+    public class BidDb
     {
         [Key]
         public int Id { get; set; }
@@ -15,13 +15,15 @@ namespace ProjektApp.Persistence
 
         [Required]
         [DataType(DataType.DateTime)]
-        private DateTime BiddedAt { get; set; }
+        public DateTime BiddedAt { get; set; }
 
         [Required]
         public int BidAmount { get; set; }
 
         [ForeignKey("AuctionId")]
-        public AuctionDB auctionDB { get; set; }
+        public AuctionDb auctionDb { get; set; }
+
+        public int AuctionId { get; set; }
 
 
     }
