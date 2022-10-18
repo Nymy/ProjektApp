@@ -28,5 +28,10 @@ namespace ProjektApp.Core
             auction.CreatedDate = DateTime.Now;
             _auctionPersistence.Add(auction);
         }
+
+        public void Edit(Auction auction, int id)
+        {
+            _auctionPersistence.Edit(auction, id);
+        }
     }
 }

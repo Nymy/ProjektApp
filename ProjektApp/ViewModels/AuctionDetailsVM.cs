@@ -11,6 +11,8 @@ namespace ProjektApp.ViewModels
 
         public string Description { get; set; }
 
+        public string UserName { get; set; }
+
         public bool IsCompleted { get; set; }
 
         public List<BidVM> Bids { get; set; } = new();
@@ -25,6 +27,7 @@ namespace ProjektApp.ViewModels
                 CreatedDate = auction.CreatedDate,
                 CloseAuction = auction.CloseDate,
                 Description = auction.Description,
+                UserName = auction.UserName,
                 IsCompleted = auction.IsCompleted()
             };
             foreach(var bid in auction.Bids)

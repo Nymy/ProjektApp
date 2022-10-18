@@ -26,7 +26,6 @@ namespace ProjektApp.Persistence
             foreach(AuctionDb adb in auctionDbs)
             {
                 Auction auction = _mapper.Map<Auction>(adb);
-                Console.WriteLine(auction.CloseDate);
                 result.Add(auction);
             }
 
@@ -52,8 +51,14 @@ namespace ProjektApp.Persistence
         public void Add(Auction auction)
         {
             AuctionDb adb = _mapper.Map<AuctionDb>(auction);
-            Console.WriteLine(adb.Description + "\n" + "\n");
             _dbContext.AuctionDbs.Add(adb);
+            _dbContext.SaveChanges();
+        }
+
+        public void Edit(Auction auction, int id)
+        { 
+            var auctionDesc = _dbContext.AuctionDbs.FirstOrDefault(a => a.Id.Equals(id));
+            auctionDesc.Description = auction.Description;
             _dbContext.SaveChanges();
         }
     }

@@ -11,6 +11,8 @@
 
         public string Description { get; set; }
 
+        public string UserName { get; set; }
+
         private List<Bid> _bids = new List<Bid>();
 
         public IEnumerable<Bid> Bids => _bids;

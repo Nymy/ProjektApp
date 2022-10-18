@@ -16,7 +16,8 @@ namespace ProjektApp.Persistence
                 Title = "Auction for orchids",
                 Description = "Alot of orchids, very nice",
                 CreatedDate = new DateTime(2022,10,17),
-                CloseDate = new DateTime(2022, 10, 30),
+                CloseDate = new DateTime(2022, 10, 17, 23,59,59),
+                UserName = "nonnoo@kth.se",
                 BidDbs = new List<BidDb>() 
             };
 

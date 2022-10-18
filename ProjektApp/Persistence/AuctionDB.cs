@@ -24,6 +24,8 @@ namespace ProjektApp.Persistence
         [DataType(DataType.DateTime)]
         public DateTime CloseDate { get; set; }
 
+        public string UserName { get; set; }
+
         public List<BidDb> BidDbs { get; set; } = new List<BidDb>();
 
     }
