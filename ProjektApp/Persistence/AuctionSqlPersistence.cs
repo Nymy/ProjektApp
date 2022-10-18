@@ -48,5 +48,13 @@ namespace ProjektApp.Persistence
             }
             return auction;
         }
+
+        public void Add(Auction auction)
+        {
+            AuctionDb adb = _mapper.Map<AuctionDb>(auction);
+            Console.WriteLine(adb.Description + "\n" + "\n");
+            _dbContext.AuctionDbs.Add(adb);
+            _dbContext.SaveChanges();
+        }
     }
 }

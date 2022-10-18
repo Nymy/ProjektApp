@@ -14,7 +14,7 @@ namespace ProjektApp.Persistence
             {
                 Id = -1, // from seed data
                 Title = "Auction for orchids",
-                Descripction = "Alot of orchids, very nice",
+                Description = "Alot of orchids, very nice",
                 CreatedDate = new DateTime(2022,10,17),
                 CloseDate = new DateTime(2022, 10, 30),
                 BidDbs = new List<BidDb>() 

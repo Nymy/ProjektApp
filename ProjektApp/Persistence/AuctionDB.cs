@@ -14,7 +14,7 @@ namespace ProjektApp.Persistence
 
         [Required]
         [MaxLength(255)]
-        public string Descripction { get; set; }
+        public string Description { get; set; }
 
         [Required]
         [DataType(DataType.DateTime)]

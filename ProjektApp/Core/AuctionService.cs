@@ -20,5 +20,13 @@ namespace ProjektApp.Core
         {
             return _auctionPersistence.GetAuctions();
         }
+
+        public void Add(Auction auction)
+        {
+            //assume no bids in new auction
+            if (auction == null || auction.Id != 0) throw new InvalidDataException();
+            auction.CreatedDate = DateTime.Now;
+            _auctionPersistence.Add(auction);
+        }
     }
 }

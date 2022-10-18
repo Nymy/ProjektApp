@@ -16,7 +16,7 @@ namespace ProjektApp.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    Descripction = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CloseDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -32,6 +32,7 @@ namespace ProjektApp.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    BiddedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     BidAmount = table.Column<int>(type: "int", nullable: false),
                     AuctionId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -48,8 +49,18 @@ namespace ProjektApp.Migrations
 
             migrationBuilder.InsertData(
                 table: "AuctionDbs",
-                columns: new[] { "Id", "CloseDate", "CreatedDate", "Descripction", "Title" },
-                values: new object[] { -1, new DateTime(2022, 10, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 10, 18, 9, 50, 46, 223, DateTimeKind.Local).AddTicks(7816), "Alot of orchids, very nice", "Auction for orchids" });
+                columns: new[] { "Id", "CloseDate", "CreatedDate", "Description", "Title" },
+                values: new object[] { -1, new DateTime(2022, 10, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 10, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), "Alot of orchids, very nice", "Auction for orchids" });
+
+            migrationBuilder.InsertData(
+                table: "BidsDbs",
+                columns: new[] { "Id", "AuctionId", "BidAmount", "BiddedAt", "Name" },
+                values: new object[] { -2, -1, 101, new DateTime(2022, 10, 17, 13, 21, 0, 0, DateTimeKind.Unspecified), "Nonno" });
+
+            migrationBuilder.InsertData(
+                table: "BidsDbs",
+                columns: new[] { "Id", "AuctionId", "BidAmount", "BiddedAt", "Name" },
+                values: new object[] { -1, -1, 100, new DateTime(2022, 10, 17, 13, 20, 0, 0, DateTimeKind.Unspecified), "Viktor" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_BidsDbs_AuctionId",

@@ -5,7 +5,7 @@
         public int Id { get; set; }
         public string Title { get; set; }
 
-        public DateTime CreatedDate { get; }
+        public DateTime CreatedDate { get; set; }
 
         public DateTime CloseDate { get; set; }  
 

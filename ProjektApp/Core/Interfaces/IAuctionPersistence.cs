@@ -5,5 +5,7 @@
         List<Auction> GetAuctions();
 
         Auction GetById(int id);
+
+        void Add(Auction auction);
     }
 }

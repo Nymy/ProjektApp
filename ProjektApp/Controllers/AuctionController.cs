@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProjektApp.Core;
 using ProjektApp.Core.Interfaces;
@@ -6,6 +7,7 @@ using ProjektApp.ViewModels;
 
 namespace ProjektApp.Controllers
 {
+    [Authorize]
     public class AuctionController : Controller
     {
         private readonly IAuctionService _auctionService;
@@ -36,28 +38,32 @@ namespace ProjektApp.Controllers
             return View(detailsVM);
         }
 
-        /*
+        
         // GET: AuctionController1/Create
         public ActionResult Create()
         {
             return View();
         }
-
+        
         // POST: AuctionController1/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(CreateAuctionVM vm)
         {
-            try
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                Auction auction = new Auction()
+                {
+                    Title = vm.Title,
+                    Description = vm.Description,
+                    CloseDate = vm.CloseAuction
+                };
+                _auctionService.Add(auction);
+                return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return View(vm);
         }
-
+     /*
         // GET: AuctionController1/Edit/5
         public ActionResult Edit(int id)
         {

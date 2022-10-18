@@ -36,7 +36,7 @@ namespace ProjektApp.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Descripction")
+                    b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
@@ -56,7 +56,7 @@ namespace ProjektApp.Migrations
                             Id = -1,
                             CloseDate = new DateTime(2022, 10, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreatedDate = new DateTime(2022, 10, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Descripction = "Alot of orchids, very nice",
+                            Description = "Alot of orchids, very nice",
                             Title = "Auction for orchids"
                         });
                 });
