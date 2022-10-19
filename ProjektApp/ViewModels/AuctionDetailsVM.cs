@@ -11,6 +11,8 @@ namespace ProjektApp.ViewModels
 
         public string Description { get; set; }
 
+        public int LowestPrice { get; set; }
+
         public string UserName { get; set; }
 
         public bool IsCompleted { get; set; }
@@ -26,6 +28,7 @@ namespace ProjektApp.ViewModels
                 Title = auction.Title,
                 CreatedDate = auction.CreatedDate,
                 CloseAuction = auction.CloseDate,
+                LowestPrice = auction.LowestPrice,
                 Description = auction.Description,
                 UserName = auction.UserName,
                 IsCompleted = auction.IsCompleted()

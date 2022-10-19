@@ -21,6 +21,11 @@ namespace ProjektApp.Core
             return _auctionPersistence.GetAuctions();
         }
 
+        public List<Auction> GetMyBids(string userName)
+        {
+            return _auctionPersistence.GetMyBids(userName);
+        }
+
         public void Add(Auction auction)
         {
             //assume no bids in new auction
@@ -32,6 +37,15 @@ namespace ProjektApp.Core
         public void Edit(Auction auction, int id)
         {
             _auctionPersistence.Edit(auction, id);
+        }
+
+        public void AddBid(Bid bid, Auction auction)
+        {
+       
+            if (bid == null || bid.Id != 0) throw new InvalidDataException();
+            bid.BiddedAt = DateTime.Now;
+            _auctionPersistence.AddBid(bid, auction);
+
         }
     }
 }

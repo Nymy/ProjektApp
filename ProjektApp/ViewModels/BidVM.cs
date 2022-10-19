@@ -10,7 +10,9 @@ namespace ProjektApp.ViewModels
         public int BidAmount { get; set; }  
         public DateTime BiddedAt { get; set; }
 
-    
+        public int AuctionId { get; set; }
+
+
         public static BidVM FromBid(Bid bid)
         {
             return new BidVM()
@@ -19,7 +21,7 @@ namespace ProjektApp.ViewModels
                 Name = bid.Name,
                 BidAmount = bid.BidAmount,
                 BiddedAt = bid.BiddedAt,
-
+                AuctionId = bid.AuctionId
             };
         }
     }

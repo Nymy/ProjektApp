@@ -15,6 +15,8 @@ namespace ProjektApp.Persistence
         [Required]
         [MaxLength(255)]
         public string Description { get; set; }
+        [Required]
+        public int LowestPrice { get; set; }
 
         [Required]
         [DataType(DataType.DateTime)]

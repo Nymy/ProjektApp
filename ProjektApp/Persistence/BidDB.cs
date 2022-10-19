@@ -18,6 +18,7 @@ namespace ProjektApp.Persistence
         public DateTime BiddedAt { get; set; }
 
         [Required]
+        [Range(0, int.MaxValue, ErrorMessage = "Bid cannot be negative value")]
         public int BidAmount { get; set; }
 
         [ForeignKey("AuctionId")]

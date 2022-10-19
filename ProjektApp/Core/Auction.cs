@@ -11,6 +11,8 @@
 
         public string Description { get; set; }
 
+        public int LowestPrice { get; set; }
+
         public string UserName { get; set; }
 
         private List<Bid> _bids = new List<Bid>();
@@ -23,11 +25,12 @@
             CreatedDate = DateTime.Now;
         }
 
-        public Auction(int id, string title, string description, DateTime closeAuction)
+        public Auction(int id, string title, string description, int lowestPrice, DateTime closeAuction)
         {
             Id = id;
             Title = title;
             Description = description;
+            LowestPrice = lowestPrice;
             CreatedDate = DateTime.Now;
             CloseDate = closeAuction;
           
@@ -35,14 +38,19 @@
 
         public Auction() { }
 
-        public void AddBid(Bid newBid)
+        public bool AddBid(Bid newBid, Auction auction)
         {
-            Console.WriteLine(newBid.BidAmount + " NEW BID SENT IN");
-            if (IsCompleted()) throw new InvalidOperationException("Auction is closed!");
- 
-            if (_bids.Count == 0 || newBid.BidAmount.CompareTo(_bids.Last().BidAmount) > 0 )
-                _bids.Add(newBid);
-            else throw new ArgumentException("Bid not high enough");
+            if (IsCompleted()) return false;
+            if (newBid.BidAmount.CompareTo(LowestPrice) > 0)
+            {
+                if (_bids.Count == 0 || newBid.BidAmount.CompareTo(_bids.Last().BidAmount) > 0)
+                {
+                    _bids.Add(newBid);
+                    return true;
+                }
+                return false;
+            }           
+            return false;
         }
 
         public void AddBidFromDb(Bid newBid)

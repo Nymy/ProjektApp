@@ -17,6 +17,7 @@ namespace ProjektApp.Persistence
                 Description = "Alot of orchids, very nice",
                 CreatedDate = new DateTime(2022,10,17),
                 CloseDate = new DateTime(2022, 10, 17, 23,59,59),
+                LowestPrice = 100,
                 UserName = "nonnoo@kth.se",
                 BidDbs = new List<BidDb>() 
             };
@@ -24,7 +25,7 @@ namespace ProjektApp.Persistence
             BidDb bid1 = new BidDb()
             {
                 Id = -1,
-                Name = "Viktor",
+                Name = "viktor@kth.se",
                 BidAmount = 100,
                 BiddedAt = new DateTime(2022, 10, 17, 13, 20, 00),
                 AuctionId = -1
@@ -33,7 +34,7 @@ namespace ProjektApp.Persistence
             BidDb bid2 = new BidDb()
             {
                 Id = -2,
-                Name = "Nonno",
+                Name = "nonnoo@kth.se",
                 BidAmount = 101,
                 BiddedAt = new DateTime(2022, 10, 17, 13, 21, 00),
                 AuctionId = -1
