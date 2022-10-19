@@ -5,9 +5,9 @@ namespace ProjektApp.ViewModels
     public class BidVM
     {
         public int Id { get; set; }
-        public string Name { get; set; }    
+        public string Name { get; set; }
 
-        public int BidAmount { get; set; }  
+        public int BidAmount { get; set; }
         public DateTime BiddedAt { get; set; }
 
         public int AuctionId { get; set; }

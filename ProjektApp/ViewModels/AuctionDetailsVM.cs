@@ -33,7 +33,7 @@ namespace ProjektApp.ViewModels
                 UserName = auction.UserName,
                 IsCompleted = auction.IsCompleted()
             };
-            foreach(var bid in auction.Bids)
+            foreach (var bid in auction.Bids)
             {
                 detaislVM.Bids.Add(BidVM.FromBid(bid));
             }

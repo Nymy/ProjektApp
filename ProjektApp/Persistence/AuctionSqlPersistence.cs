@@ -13,14 +13,16 @@ namespace ProjektApp.Persistence
         private AuctionDbContext _dbContext;
         private IMapper _mapper;
 
-        public AuctionSqlPersistence(AuctionDbContext dbContext, IMapper mapper) {
+        public AuctionSqlPersistence(AuctionDbContext dbContext, IMapper mapper)
+        {
             _dbContext = dbContext;
             _mapper = mapper;
         }
 
-        public List<Auction> GetAuctions() {
+        public List<Auction> GetAuctions()
+        {
             var auctionDbs = _dbContext.AuctionDbs
-                  .Where( p => p.CloseDate > DateTime.Now)
+                  .Where(p => p.CloseDate > DateTime.Now)
                 //  .Include(p => p.BidDbs)
                 .ToList();
 
@@ -38,17 +40,17 @@ namespace ProjektApp.Persistence
         {
             var auctionDbs = _dbContext.AuctionDbs
                 .Include(p => p.BidDbs)
-                .Where(c => c.CloseDate > DateTime.Now )
+                .Where(c => c.CloseDate > DateTime.Now)
                 .ToList();
-      
+
             bool added = false;
             List<Auction> result = new List<Auction>();
             foreach (AuctionDb adb in auctionDbs)
             {
-               added = false;
-               foreach(BidDb bdb in adb.BidDbs)
+                added = false;
+                foreach (BidDb bdb in adb.BidDbs)
                 {
-                    if(bdb.Name == userName)
+                    if (bdb.Name == userName)
                     {
                         if (!added)
                         {
@@ -56,9 +58,9 @@ namespace ProjektApp.Persistence
                             Auction auction = _mapper.Map<Auction>(adb);
                             result.Add(auction);
                         }
-                        
+
                     }
-                }  
+                }
             }
 
             return result;
@@ -71,7 +73,7 @@ namespace ProjektApp.Persistence
                 .Include(p => p.BidDbs)
                 .Where(c => c.CloseDate < DateTime.Now)
                 .ToList();
-   
+
             List<Auction> result = new List<Auction>();
             foreach (AuctionDb adb in auctionDbs)
             {
@@ -117,10 +119,10 @@ namespace ProjektApp.Persistence
 
         public void AddBid(Bid bid, Auction auction)
         {
-            bool added =  auction.AddBid(bid, auction);
+            bool added = auction.AddBid(bid, auction);
             if (added)
             {
-                BidDb bdb = _mapper.Map<BidDb>(bid); 
+                BidDb bdb = _mapper.Map<BidDb>(bid);
                 _dbContext.BidsDbs.Add(bdb);
                 _dbContext.SaveChanges();
             }
