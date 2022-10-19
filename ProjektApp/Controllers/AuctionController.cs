@@ -42,6 +42,19 @@ namespace ProjektApp.Controllers
             return View(auctionVMs);
         }
 
+        // GET: AuctionController1/GetMyWinningBids
+        public ActionResult GetMyWinningBids()
+        {
+
+            List<Auction> auctions = _auctionService.GetMyWinningBids(User.Identity.Name);
+            List<AuctionVM> auctionVMs = new();
+            foreach (var auction in auctions)
+            {
+                auctionVMs.Add(AuctionVM.FromAuction(auction));
+            }
+            return View(auctionVMs);
+        }
+
 
         // GET: AuctionController1/Details/5
         public ActionResult Details(int id)

@@ -36,7 +36,6 @@ namespace ProjektApp.Persistence
 
         public List<Auction> GetMyBids(string userName)
         {
-            Console.WriteLine("\n \n \n" + userName + " IM HERE IM HERE IM HERE \n \n\n\n");
             var auctionDbs = _dbContext.AuctionDbs
                 .Include(p => p.BidDbs)
                 .Where(c => c.CloseDate > DateTime.Now )
@@ -62,6 +61,27 @@ namespace ProjektApp.Persistence
                 }  
             }
 
+            return result;
+        }
+
+        public List<Auction> GetMyWinningBids(string userName)
+        {
+            Console.WriteLine("\n \n \n" + userName + " IM HERE IM HERE IM HERE \n \n\n\n");
+            var auctionDbs = _dbContext.AuctionDbs
+                .Include(p => p.BidDbs)
+                .Where(c => c.CloseDate < DateTime.Now)
+                .ToList();
+   
+            List<Auction> result = new List<Auction>();
+            foreach (AuctionDb adb in auctionDbs)
+            {
+                if (adb.BidDbs.Last().Name == userName)
+                {
+                    Auction auction = _mapper.Map<Auction>(adb);
+                    result.Add(auction);
+
+                }
+            }
             return result;
         }
 

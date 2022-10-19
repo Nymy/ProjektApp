@@ -4,7 +4,8 @@
     {
         List<Auction> GetAuctions();
         List<Auction> GetMyBids(string userName);
-
+        List<Auction> GetMyWinningBids(string userName);
+        
         Auction GetById(int id);
 
         void Add(Auction auction);

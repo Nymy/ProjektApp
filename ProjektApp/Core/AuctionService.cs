@@ -26,6 +26,11 @@ namespace ProjektApp.Core
             return _auctionPersistence.GetMyBids(userName);
         }
 
+        public List<Auction> GetMyWinningBids(string userName)
+        {
+            return _auctionPersistence.GetMyWinningBids(userName);
+        }
+
         public void Add(Auction auction)
         {
             //assume no bids in new auction
