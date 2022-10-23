@@ -49,8 +49,12 @@ namespace ProjektApp.Core
        
             if (bid == null || bid.Id != 0) throw new InvalidDataException();
             bid.BiddedAt = DateTime.Now;
-            _auctionPersistence.AddBid(bid, auction);
-
+            bool added = auction.AddBid(bid, auction);
+            if (added)
+            {
+                _auctionPersistence.AddBid(bid, auction);
+            }
+            
         }
     }
 }
