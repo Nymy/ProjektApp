@@ -22,8 +22,7 @@ namespace ProjektApp.Persistence
         public List<Auction> GetAuctions()
         {
             var auctionDbs = _dbContext.AuctionDbs
-                  .Where(p => p.CloseDate > DateTime.Now)
-                //  .Include(p => p.BidDbs)
+                .Where(p => p.CloseDate > DateTime.Now)
                 .ToList();
 
             List<Auction> result = new List<Auction>();
@@ -68,7 +67,6 @@ namespace ProjektApp.Persistence
 
         public List<Auction> GetMyWinningBids(string userName)
         {
-            Console.WriteLine("\n \n \n" + userName + " IM HERE IM HERE IM HERE \n \n\n\n");
             var auctionDbs = _dbContext.AuctionDbs
                 .Include(p => p.BidDbs)
                 .Where(c => c.CloseDate < DateTime.Now)
