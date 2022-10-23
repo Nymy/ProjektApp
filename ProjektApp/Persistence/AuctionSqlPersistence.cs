@@ -119,13 +119,9 @@ namespace ProjektApp.Persistence
 
         public void AddBid(Bid bid, Auction auction)
         {
-            bool added = auction.AddBid(bid, auction);
-            if (added)
-            {
                 BidDb bdb = _mapper.Map<BidDb>(bid);
                 _dbContext.BidsDbs.Add(bdb);
                 _dbContext.SaveChanges();
-            }
         }
     }
 }
